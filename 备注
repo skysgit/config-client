@@ -1,6 +1,9 @@
-http请求地址和资源文件映射如下:
-/{application}/{profile}[/{label}]
-/{application}-{profile}.yml
-/{label}/{application}-{profile}.yml
-/{application}-{profile}.properties
-/{label}/{application}-{profile}.properties
+#方式一：默认为http://localhost:8882，此种方式直接通过url进行寻址，无需进行服务注册及发现
+spring.cloud.config.uri=http://localhost:8082
+spring.profiles.active=test
+ 
+#方式二：服务注册发现，自动发现配置中心服务端
+spring.cloud.config.discovery.enabled=true
+spring.cloud.config.discovery.serviceId=config-server
+
+#  拼接规则: uri/name/profile/label
