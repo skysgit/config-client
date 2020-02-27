@@ -3,9 +3,12 @@ package com.cn.app.client;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@EnableEurekaClient
 @SpringBootApplication
 @RestController
 public class ConfigClientApp {
@@ -15,12 +18,13 @@ public class ConfigClientApp {
 	        SpringApplication.run(ConfigClientApp.class, args);
 	    }
 	  
-	  
 	  @Value("${test}")
-	  private String datUrl;
-	  	@RequestMapping(value = "/hi")
-		public String hi(){
-			return datUrl;
-		}
+	  private String test;
+	 
+	 
+	  @RequestMapping(value = "/test",method = RequestMethod.GET)
+	  public String test(){
+	        return test;
+	    }
 
 }
